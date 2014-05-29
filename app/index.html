@@ -15,6 +15,7 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/icons.css">
     <!-- endbuild -->
   </head>
   <body ng-app="powerhouseApp">
@@ -23,24 +24,42 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-   
-   <header>
+    
+    <header>
 
       <div class="wrap-logo">
 
-        <img src="">
+        <a href="/#/home"><img src="images/logo-main.png"></a>
 
       </div>
 
-      <nav id="main-nav">
+      <nav id="main-nav" ng-controller="NavCtrl">
 
-      <ul>
-        <li></li>
-      </ul>
+        <div class="menu-toggle" ng-click="toggleNavBtn()">
+          <span class="icon icon-list"></span>
+        </div>
+
+        <ul ng-class="{'active':navOn == true}">
+          <li ng-repeat="navItem in navItems" ng-class="navClass('{{navItem.href}}')" ng-click="toggleNav()"><a href="#/{{navItem.href}}">{{navItem.name}}</a></li>
+        </ul>
+
+        <div class="social-icons">
+
+          <a href=""><span class="icon icon-twitter"></span></a>
+          <a href=""><span class="icon icon-facebook"></span></a>
+          <a href=""><span class="icon icon-googleplus"></span></a>
+
+        </div>
 
       </nav>
 
     </header>
+
+    <div class="wrap-title">
+
+      <p>Powerhouse<span class="title-slim">NYC</span></p>
+
+    </div>
 
     <div class="container" ng-view=""></div>
     
@@ -78,7 +97,15 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/nav.controller.js"></script>
+        <script src="scripts/controllers/home.controller.js"></script>
+        <script src="scripts/controllers/about.controller.js"></script>
+        <script src="scripts/controllers/services.controller.js"></script>
+        <script src="scripts/controllers/support.controller.js"></script>
+        <script src="scripts/controllers/calendar.controller.js"></script>
+        <script src="scripts/controllers/blog.controller.js"></script>
+        <script src="scripts/controllers/contact.controller.js"></script>
         <!-- endbuild -->
+
 </body>
 </html>
